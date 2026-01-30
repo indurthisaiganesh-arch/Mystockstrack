@@ -1,8 +1,8 @@
-yfiannce
+yfinance
 pandas
 datetime
 time
 zoneinfo
 requests
 warnings
-apscheduler.schedulers.background
+apscheduler
