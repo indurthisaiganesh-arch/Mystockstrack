@@ -18,11 +18,9 @@ def send_telegram_message(msg,CHAT_ID = "-1003697273597"):
         send_telegram_message("Telegram error:",Admin)
 def test_bot():
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": Admin, "text": "GitHub Actions test: Bot is alive!"}
+    payload = {"chat_id": Admin, "text": " Alive!"}
     response = requests.post(url, json=payload)
     print(f"Telegram response: {response.status_code}, {response.text}")
-
-test_bot()
 
 class VolumeSpikeScanner:
 
@@ -174,7 +172,8 @@ def main():
 
     try:
         while True:
-            t.sleep(60)
+            test_bot()
+            t.sleep(3600)
     except (KeyboardInterrupt, SystemExit):
         scheduler.shutdown()
 
