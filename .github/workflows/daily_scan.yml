@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install yfinance pandas requests
+          pip install yfinance pandas requests apscheduler
 
       - name: Run Python script
         run: python Volumescanner.py  # Make sure this matches your filename!
