@@ -25,4 +25,7 @@ jobs:
           pip install yfinance pandas requests apscheduler
 
       - name: Run Python script
-        run: python Volumescanner.py  # Make sure this matches your filename!
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: python Volumescanner.py
+        
