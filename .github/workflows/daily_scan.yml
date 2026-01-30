@@ -25,4 +25,4 @@ jobs:
           pip install yfinance pandas requests
 
       - name: Run Python script
-        run: python Volume_Scan.py  # Make sure this matches your filename!
+        run: python Volumescanner.py  # Make sure this matches your filename!
