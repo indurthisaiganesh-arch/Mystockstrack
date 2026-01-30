@@ -1,3 +1,4 @@
+import os
 import yfinance as yf
 import pandas as pd
 import time as t
@@ -8,7 +9,7 @@ import warnings
 from apscheduler.schedulers.background import BackgroundScheduler
 Admin="6500240540"
 warnings.filterwarnings("ignore")
-def send_telegram_message(msg,CHAT_ID = "-1003697273597",BOT_TOKEN = "8447606896:AAHCdynTPaJ5wtTJTgPkgy-wRISSDypPNKA"):
+def send_telegram_message(msg,CHAT_ID = "-1003697273597",BOT_TOKEN = os.getenv('BOT_TOKEN')):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         requests.post(url, data={"chat_id": CHAT_ID, "text": msg}, timeout=10)
