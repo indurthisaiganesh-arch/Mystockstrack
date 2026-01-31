@@ -6,4 +6,3 @@ time
 zoneinfo
 requests
 warnings
-apscheduler
