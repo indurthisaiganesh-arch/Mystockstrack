@@ -40,7 +40,7 @@ class VolumeSpikeScanner:
 
     def is_market_open(self):
         now = datetime.now(ZoneInfo("Asia/Kolkata"))
-        return now.weekday() < 5 and self.MARKET_OPEN <= now.time() <= self.MARKET_CLOSE
+        return self.MARKET_OPEN <= now.time() <= self.MARKET_CLOSE
 
     def get_weekly_average(self):
         print("Updating weekly averages...")
@@ -75,11 +75,7 @@ class VolumeSpikeScanner:
         print("Weekly averages updated")
         send_telegram_message("Weekly Averages Updated ✅")
 
-    def start_scanner(self):
-        if not self.is_market_open():
-            send_telegram_message("MarketClosd")
-            return
-            
+    def start_scanner(self):   
         send_telegram_message(f"Programm started {datetime.now(ZoneInfo('Asia/Kolkata')).time()}",Admin)
         self.printed.clear()
         print("Bot got to Online")
