@@ -26,11 +26,6 @@ class VolumeSpikeScanner:
         self.SCAN_INTERVAL = 60
         self.MARKET_OPEN = time(9, 15)
         self.MARKET_CLOSE = time(15, 20)
-
-        self.link = "https://drive.google.com/file/d/1h0-lm2PR2JeZqR1hn5ua-zqQeuyKg6dw/view?usp=drivesdk"
-        self.linkid = self.link.split("/")[-2]
-        self.stockurl = f"https://drive.google.com/uc?export=download&id={self.linkid}"
-
         self.printed = set()
         self.df = None
         self.stocks_list = []
@@ -43,7 +38,7 @@ class VolumeSpikeScanner:
         print("Updating weekly averages...")
         send_telegram_message("Updating Weekly Averages...")
 
-        df = pd.read_csv(self.stockurl)
+        df = pd.read_csv(StocksTraded.csv)
         stocks = (df["Symbol "] + ".NS").to_list()
 
         data = yf.download(
