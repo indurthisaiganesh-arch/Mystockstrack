@@ -6,11 +6,10 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, time
 import requests
 import warnings
-from apscheduler.schedulers.background import BackgroundScheduler
 Admin="6500240540"
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 warnings.filterwarnings("ignore")
-def send_telegram_message(msg,CHAT_ID = "-1003697273597"):
+def send_telegram_message(msg,CHAT_ID = "6500240540"):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         requests.post(url, data={"chat_id": CHAT_ID, "text": msg}, timeout=10)
@@ -152,30 +151,13 @@ class VolumeSpikeScanner:
                 t.sleep(30)
                 continue
 
-        send_telegram_message("📴 Market Closed")
+        send_telegram_message(f"📴 Market Closed Time: {datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')}")
         print("Market closed")
         send_telegram_message("Scheduler ended... \nWaiting for next 9:15AM IST",Admin)
 
 def main():
     scanner = VolumeSpikeScanner()
-    scheduler = BackgroundScheduler(timezone="Asia/Kolkata")
-    scheduler.add_job(
-        scanner.start_scanner,
-        trigger="cron",
-        hour=9,
-        minute=15
-    )
-
-    scheduler.start()
-    print("Scheduler started... Waiting for 9:15AM IST")
-    send_telegram_message("Scheduler started... Waiting for 9:15AM IST",Admin)
-
-    try:
-        while True:
-            test_bot()
-            t.sleep(3600)
-    except (KeyboardInterrupt, SystemExit):
-        scheduler.shutdown()
+    scanner.start_scanner()
 
 if __name__ == "__main__":
     main()
