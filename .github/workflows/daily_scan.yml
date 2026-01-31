@@ -23,6 +23,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install yfinance pandas requests
+          
+      - name: Telegram notification
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{secrets.BOT_TOKEN}}/send message"\
+             -d chat_id="${{secrets.ADMINID}}"\
+             -d text="Work Flow Started" || true
 
       - name: Run Python script
         env:
