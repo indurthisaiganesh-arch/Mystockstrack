@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, time
 import requests
 import warnings
-Admin=os.getenv('AdminId')
+Admin=os.getenv('ADMINID')
 CHAT=os.getenv('CHAT_ID')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 warnings.filterwarnings("ignore")
