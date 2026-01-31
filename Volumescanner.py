@@ -50,7 +50,7 @@ class VolumeSpikeScanner:
             period="7d",
             interval="1d",
             group_by="ticker",
-            progress=True,
+            progress=False,
             threads=True
         )
 
