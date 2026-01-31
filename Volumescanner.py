@@ -22,7 +22,7 @@ class VolumeSpikeScanner:
 
     def __init__(self):
 
-        self.VOLUME_SPIKE = 7
+        self.VOLUME_SPIKE = 5
         self.SCAN_INTERVAL = 60
         self.MARKET_OPEN = time(9, 15)
         self.MARKET_CLOSE = time(15, 20)
