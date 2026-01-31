@@ -98,7 +98,7 @@ class VolumeSpikeScanner:
                           if current_vol // self.printed[stock]+2>= avg_vol :
                             change_pct = ((current_vol - avg_vol) / avg_vol) * 100
                             msg = (
-                                f"🔥 Realerting Stock incresed 2 spike\n\n"
+                                f"🔥 Realerting Stock incresed spike -{self.VOLUME_SPIKE+2}\n\n"
                                 f"Ticker: {stock.replace('.NS','')}\n"
                                 f"Current Vol: {int(current_vol):,}\n"
                                 f"Avg Vol: {int(avg_vol):,}\n"
@@ -116,7 +116,7 @@ class VolumeSpikeScanner:
                             change_pct = ((current_vol - avg_vol) / avg_vol) * 100
 
                             msg = (
-                                f"🔥 Volume Spike Alert\n\n"
+                                f"🔥 Volume Spike Alert - {self.VOLUME_SPIKE}\n\n"
                                 f"Ticker: {stock.replace('.NS','')}\n"
                                 f"Current Vol: {int(current_vol):,}\n"
                                 f"Avg Vol: {int(avg_vol):,}\n"
