@@ -27,5 +27,7 @@ jobs:
       - name: Run Python script
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID:${{secrets.CHAT_ID}
+          AdminId:${{secrets.AdminId}}
         run: python Volumescanner.py
         
