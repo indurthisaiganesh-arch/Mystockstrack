@@ -24,7 +24,7 @@ class VolumeSpikeScanner:
         self.VOLUME_SPIKE = 7
         self.SCAN_INTERVAL = 60
         self.MARKET_OPEN = time(9, 15)
-        self.MARKET_CLOSE = time(15, 30)
+        self.MARKET_CLOSE = time(15, 20)
 
         self.link = "https://drive.google.com/file/d/1h0-lm2PR2JeZqR1hn5ua-zqQeuyKg6dw/view?usp=drivesdk"
         self.linkid = self.link.split("/")[-2]
