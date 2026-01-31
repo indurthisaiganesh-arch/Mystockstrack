@@ -17,6 +17,7 @@ def send_telegram_message(msg,CHAT_ID =CHAT):
     except Exception as e:
         send_telegram_message("Telegram error:",Admin)
         
+send_telegram_message(f"Programm started {datetime.now(ZoneInfo('Asia/Kolkata')).time()}",Admin)                
 class VolumeSpikeScanner:
 
     def __init__(self):
@@ -72,7 +73,6 @@ class VolumeSpikeScanner:
         send_telegram_message("Weekly Averages Updated ✅")
 
     def start_scanner(self):   
-        send_telegram_message(f"Programm started {datetime.now(ZoneInfo('Asia/Kolkata')).time()}",Admin)
         self.printed.clear()
         print("Bot got to Online")
         send_telegram_message("Bot got to Online")
