@@ -3,8 +3,8 @@ name: Run Stock Scanner
 on:
   schedule:
     # This uses Cron syntax. 
-    # Example: '30 9 * * 1-5' is 9:30 AM UTC, Mon-Fri
-    - cron: '30 9 * * 1-5'
+    # Example: '30 9 * * 1-5' is 9:30 AM IND, Mon-Fri
+    - cron: '30 4 * * 1-5'
   workflow_dispatch: # This allows you to run it manually anytime for testing
 
 jobs:
@@ -30,4 +30,3 @@ jobs:
           CHAT_ID: ${{secrets.CHAT_ID}
           ADMINID: ${{secrets.AdminId}}
         run: python Volumescanner.py
-        
