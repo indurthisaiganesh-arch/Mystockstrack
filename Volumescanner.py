@@ -91,7 +91,7 @@ class VolumeSpikeScanner:
                     progress=False,
                     threads=True
                 )
-                send_telegram_message(f"stocks dowloaded\n{datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')}\n\nscaning",Admin}
+                send_telegram_message(f"stocks dowloaded\n{datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')}\n\nscaning",Admin)
 
                 for stock in self.stocks_list:
                     try:
