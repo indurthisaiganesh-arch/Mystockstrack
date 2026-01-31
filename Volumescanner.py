@@ -6,21 +6,17 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, time
 import requests
 import warnings
-Admin="6500240540"
+Admin=os.getenv('AdminId')
+CHAT=os.getenv('CHAT_ID')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 warnings.filterwarnings("ignore")
-def send_telegram_message(msg,CHAT_ID = "6500240540"):
+def send_telegram_message(msg,CHAT_ID =CHAT):
     try:
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         requests.post(url, data={"chat_id": CHAT_ID, "text": msg}, timeout=10)
     except Exception as e:
         send_telegram_message("Telegram error:",Admin)
-def test_bot():
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": Admin, "text": " Alive!"}
-    response = requests.post(url, json=payload)
-    print(f"Telegram response: {response.status_code}, {response.text}")
-
+        
 class VolumeSpikeScanner:
 
     def __init__(self):
@@ -85,15 +81,17 @@ class VolumeSpikeScanner:
         send_telegram_message("🚀 Market Scanner Online")
 
         while self.is_market_open():
+            send_telegram_message(f"Stocks downloading intiated\n{datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')}",Admin)
             try:
                 data = yf.download(
                     self.stocks_list,
                     period="1d",
                     interval="1m",
                     group_by="ticker",
-                    progress=True,
+                    progress=False,
                     threads=True
                 )
+                send_telegram_message(f"stocks dowloaded\n{datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')\n\nscaning",Admin}
 
                 for stock in self.stocks_list:
                     try:
@@ -149,7 +147,6 @@ class VolumeSpikeScanner:
 
         send_telegram_message(f"📴 Market Closed Time: {datetime.now(ZoneInfo('Asia/Kolkata')).strftime('%H:%M:%S')}")
         print("Market closed")
-        send_telegram_message("Scheduler ended... \nWaiting for next 9:15AM IST",Admin)
 
 def main():
     scanner = VolumeSpikeScanner()
