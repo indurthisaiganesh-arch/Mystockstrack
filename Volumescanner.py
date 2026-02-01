@@ -146,7 +146,8 @@ class VolumeSpikeScanner:
                 t.sleep(self.SCAN_INTERVAL)
                 obj = self.login()
 
-            send_telegram_message(f"Stocks downloaded scanned\n{time_now()}",ADMIN)
+            if datetime.now(ZoneInfo("Asia/Kolkata")).minute % 15 == 0:
+                send_telegram_message(f"Scanner alive {time_now()}", ADMIN)
             t.sleep(self.SCAN_INTERVAL)
         send_telegram_message("Market Closed")
         send_telegram_message("Market Closed", ADMIN)
