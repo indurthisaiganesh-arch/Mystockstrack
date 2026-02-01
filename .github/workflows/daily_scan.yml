@@ -35,4 +35,8 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{secrets.CHAT_ID}}
           ADMINID: ${{secrets.ADMINID}}
+          API_KEY: ${{secrets.API_KEY}}
+          TOTP_SECRET: ${{secrets.TOPTP_SECRET}}
+          CLIENT_CODE: ${{secrets.CLIENT_CODE}}
+          PASSWORD: ${{secrets.PASSWORD}}
         run: python Volumescanner.py
