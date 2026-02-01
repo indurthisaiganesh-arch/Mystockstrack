@@ -90,8 +90,8 @@ class VolumeSpikeScanner:
     def login(self):
         obj = SmartConnect(api_key=API_KEY)
         totp = pyotp.TOTP(TOTP_SECRET).now()
-        obj.generateSession(CLIENT_CODE, PASSWORD, totp)
-        send_telegram_message(f"angel one status:{obj.status}",ADMIN)
+        session=obj.generateSession(CLIENT_CODE, PASSWORD, totp)
+        send_telegram_message(f"angel one status:{session.get('status')}",ADMIN)
         return obj
 
     def start_scanner(self):
@@ -106,12 +106,14 @@ class VolumeSpikeScanner:
 
         while self.is_market_open():
             try:
-                send_telegram_message(f"Stocks downloading intiated\n{time_now()}}",ADMIN)
+                send_telegram_message(f"Stocks downloading intiated\n{time_now()}",ADMIN)
                 for chunk in self.chunked_tokens:
                     res = obj.getMarketData(
                         mode="FULL",
                         exchangeTokens={"NSE": chunk}
                     )
+                    if not res or "data" not in res or "fetched" not in res["data"]:
+                        continue
                     for stock in res["data"]["fetched"]:
                         live_vol = stock["tradeVolume"]
                         symbol = stock["tradeSymbol"].replace("-EQ", "")
@@ -134,8 +136,7 @@ class VolumeSpikeScanner:
                                 f"Current Vol: {int(live_vol):,}\n"
                                 f"Avg Vol: {int(avg_vol):,}\n"
                                 f"Time: {time_now()}\n\n"
-                                f"https://charting.nseindia.com/?symbol={symbol}-EQ",
-                                CHAT
+                                f"https://charting.nseindia.com/?symbol={symbol}-EQ"
                             )
                             self.printed[symbol] = threshold
 
