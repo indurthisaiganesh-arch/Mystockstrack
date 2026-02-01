@@ -6,3 +6,6 @@ time
 zoneinfo
 requests
 warnings
+smartapi-python
+pyotp
+logzero
