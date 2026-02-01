@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install yfinance pandas requests
+          pip install yfinance pandas requests smartapi-python pyotp logzero
           
       - name: Telegram notification
         run: |
