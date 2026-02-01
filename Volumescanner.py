@@ -1,4 +1,4 @@
-import os
+youimport os
 import yfinance as yf
 import pandas as pd
 import time as t
@@ -22,7 +22,7 @@ class VolumeSpikeScanner:
 
     def __init__(self):
 
-        self.VOLUME_SPIKE = 5
+        self.VOLUME_SPIKE = 10
         self.SCAN_INTERVAL = 60
         self.MARKET_OPEN = time(9, 15)
         self.MARKET_CLOSE = time(15, 20)
