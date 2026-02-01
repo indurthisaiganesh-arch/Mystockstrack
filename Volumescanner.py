@@ -38,7 +38,7 @@ class VolumeSpikeScanner:
         print("Updating weekly averages...")
         send_telegram_message("Updating Weekly Averages...")
 
-        df = pd.read_csv(StocksTraded.csv)
+        df = pd.read_csv("StocksTraded.csv")
         stocks = (df["Symbol "] + ".NS").to_list()
 
         data = yf.download(
