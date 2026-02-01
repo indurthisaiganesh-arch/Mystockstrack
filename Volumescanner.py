@@ -7,7 +7,7 @@ from datetime import datetime, time
 import requests
 import warnings
 import pyotp
-from smartapi import SmartConnect
+from SmartApi import SmartConnect
 
 API_KEY = os.getenv('API_KEY')
 TOTP_SECRET = os.getenv('TOTP_SECRET')
