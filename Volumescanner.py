@@ -116,7 +116,7 @@ class VolumeSpikeScanner:
                         continue
                     for stock in res["data"]["fetched"]:
                         live_vol = stock["tradeVolume"]
-                        symbol = stock["tradeSymbol"].replace("-EQ", "")
+                        symbol = stock["tradingSymbol"].replace("-EQ", "")
 
                         avg_row = self.weekly_averages[
                             self.weekly_averages["Symbol"] == symbol
