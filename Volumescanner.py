@@ -83,7 +83,7 @@ class VolumeSpikeScanner:
                 if not data[s].empty:
                     rows.append({
                         "Symbol": s.replace(".NS", ""),
-                        "weekly_avg": int(data[s]["Volume"].tail.mean())
+                        "weekly_avg": int(data[s]["Volume"].tail(7).mean())
                     })
             except Exception:
                 continue
