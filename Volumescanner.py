@@ -97,6 +97,8 @@ class VolumeSpikeScanner:
     def start_scanner(self):
         send_telegram_message("Bot got to Online")
         obj = self.login()
+        if obj.get('status') == False:
+            return
         self.df = pd.read_csv("Master.csv")
         self.tokens_list = self.df['tokens'].tolist()
         self.chunked_tokens = list(self.chunk_list(self.tokens_list))
