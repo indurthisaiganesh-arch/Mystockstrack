@@ -98,7 +98,7 @@ class VolumeSpikeScanner:
         send_telegram_message("Bot got to Online",ADMIN)
         obj = self.login()
         self.df = pd.read_csv("Master.csv")
-        self.tokens_list = self.df['tokens'].tolist()
+        self.tokens_list = self.df['tokens'].values.tolist()
         self.chunked_tokens = list(self.chunk_list(self.tokens_list))
         self.get_weekly_average()
         send_telegram_message("🚀 Market Scanner Online")
