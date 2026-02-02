@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 import time as t
 from zoneinfo import ZoneInfo
-from datetime import datetime, time
+from datetime import timedelta, datetime, time
 import requests
 import warnings
 import pyotp
