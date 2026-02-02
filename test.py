@@ -8,4 +8,5 @@ PASSWORD = "3641"
 print(API_KEY,TOTP_SECRET,CLIENT_CODE,PASSWORD)
 obj = SmartConnect(api_key=API_KEY)
 totp = pyotp.TOTP(TOTP_SECRET).now()
-obj.generateSession(CLIENT_CODE, PASSWORD, totp)
+ses=obj.generateSession(CLIENT_CODE, PASSWORD, totp)
+print(ses.get("status')
