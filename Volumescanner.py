@@ -90,15 +90,14 @@ class VolumeSpikeScanner:
     def login(self):
         obj = SmartConnect(api_key=API_KEY)
         totp = pyotp.TOTP(TOTP_SECRET).now()
-        session=obj.generateSession(CLIENT_CODE, PASSWORD, totp)
-        send_telegram_message(f"angel one status:{session.get('status')}",ADMIN)
+        obj.generateSession(CLIENT_CODE, PASSWORD, totp)
+        send_telegram_message(f"angel one status:",ADMIN)
         return obj
 
     def start_scanner(self):
-        send_telegram_message("Bot got to Online")
+        send_telegram_message("Bot got to Online",ADMIN)
         obj = self.login()
-        if obj.get('status') == False:
-            return
+        return
         self.df = pd.read_csv("Master.csv")
         self.tokens_list = self.df['tokens'].tolist()
         self.chunked_tokens = list(self.chunk_list(self.tokens_list))
