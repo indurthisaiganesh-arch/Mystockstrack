@@ -44,8 +44,8 @@ send_telegram_message(f"Program started {time_now()}", ADMIN)
 class VolumeSpikeScanner:
 
     def __init__(self):
-        self.VOLUME_SPIKE = 7
-        self.REALERT_STEP = 2
+        self.VOLUME_SPIKE = 10
+        self.REALERT_STEP = 10
         self.SCAN_INTERVAL = 60
         self.MARKET_OPEN = time(9, 15)
         self.MARKET_CLOSE = time(15, 20)
@@ -105,11 +105,9 @@ class VolumeSpikeScanner:
         self.chunked_tokens = list(self.chunk_list(self.tokens_list))
         self.get_weekly_average()
         send_telegram_message("🚀 Market Scanner Online")
-        
-
+        cycle=0
         while self.is_market_open():
             try:
-                send_telegram_message(f"Stocks downloading intiated\n{time_now()}",ADMIN)
                 for chunk in self.chunked_tokens:
                     res = obj.getMarketData(
                         mode="FULL",
@@ -131,6 +129,7 @@ class VolumeSpikeScanner:
                         threshold = self.VOLUME_SPIKE
                         if symbol in self.printed:
                             threshold = self.printed[symbol] + self.REALERT_STEP
+                            continue
 
                         if live_vol >= avg_vol * threshold:
                             send_telegram_message(
@@ -148,9 +147,9 @@ class VolumeSpikeScanner:
                 send_telegram_message(f"Error: {e}", ADMIN)
                 t.sleep(self.SCAN_INTERVAL)
                 obj = self.login()
-
-            if datetime.now(ZoneInfo("Asia/Kolkata")).minute % 15 == 0:
-                send_telegram_message(f"Scanner alive {time_now()}", ADMIN)
+            cycle+=1
+            if datetime.now(ZoneInfo("Asia/Kolkata")).minute % 30 == 0:
+                send_telegram_message(f"Scanner alive  {time_now()}\n\ncompleted cycles{cycle}", ADMIN)
             t.sleep(self.SCAN_INTERVAL)
         send_telegram_message("Market Closed")
         send_telegram_message("Market Closed", ADMIN)
