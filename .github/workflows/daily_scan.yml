@@ -32,5 +32,5 @@ jobs:
           API_KEY: "Y8r5TcWG"
           TOTP_SECRET: "NPWR5ZRP33TM64JQOM6B54VRJM"
           CLIENT_CODE: "AABM100190"
-          PASSWORD: "3641"
+          PASSWORD: ${{secrets.PASSWORD}}
         run: python test.py
