@@ -31,6 +31,6 @@ jobs:
           ADMINID: ${{secrets.ADMINID}}
           API_KEY: "Y8r5TcWG"
           TOTP_SECRET: "NPWR5ZRP33TM64JQOM6B54VRJM"
-          CLIENT_CODE: ${{secrets.CLIENT_CODE}}
-          PASSWORD: ${{secrets.PASSWORD}}
+          CLIENT_CODE: "AABM100190"
+          PASSWORD: "3641"
         run: python test.py
