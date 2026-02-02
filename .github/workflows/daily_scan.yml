@@ -39,4 +39,4 @@ jobs:
           TOTP_SECRET: ${{secrets.TOPTP_SECRET}}
           CLIENT_CODE: ${{secrets.CLIENT_CODE}}
           PASSWORD: ${{secrets.PASSWORD}}
-        run: python test.py
+        run: python Volumescanner.py
