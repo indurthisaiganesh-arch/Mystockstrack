@@ -112,7 +112,7 @@ class VolumeSpikeScanner:
                         mode="FULL",
                         exchangeTokens={"NSE": chunk}
                     )
-                    if not res or "data" not in res or "fetched" not in res["data"]:
+                    if not res or "data" not in res or "fetched" not in res["data"] or not res["data"]["fetched"]:
                         continue
                     for stock in res["data"]["fetched"]:
                         live_vol = stock["tradeVolume"]
