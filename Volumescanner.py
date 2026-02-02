@@ -66,9 +66,12 @@ class VolumeSpikeScanner:
     def get_weekly_average(self):
         send_telegram_message("Updating Weekly Averages...")
         stocks = self.df['yfinsymbol'].tolist()
+        start_date=datetime.now(ZoneInfo("Asia/Kolkata"))-timedelta(days=15)
+        end_date=datetime.now(ZoneInfo("Asia/Kolkata"))-timedelta(days=1)
         data = yf.download(
             stocks,
-            period="7d",
+            start=start_date,
+            end=end_date,
             interval="1d",
             group_by="ticker",
             threads=True,
@@ -80,7 +83,7 @@ class VolumeSpikeScanner:
                 if not data[s].empty:
                     rows.append({
                         "Symbol": s.replace(".NS", ""),
-                        "weekly_avg": int(data[s]["Volume"].mean())
+                        "weekly_avg": int(data[s]["Volume"].tail.mean())
                     })
             except Exception:
                 continue
