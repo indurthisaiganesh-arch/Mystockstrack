@@ -1,4 +1,4 @@
-import os
+jiimport os
 import yfinance as yf
 import pandas as pd
 import time as t
@@ -145,7 +145,7 @@ class VolumeSpikeScanner:
                     t.sleep(0.4)
             except Exception as e:
                 send_telegram_message(f"Error: {e}", ADMIN)
-                t.sleep(self.SCAN_INTERVAL)
+                t.sleep(self.SCAN_INTERVAL*3)
                 obj = self.login()
             cycle+=1
             if datetime.now(ZoneInfo("Asia/Kolkata")).minute % 30 == 0:
