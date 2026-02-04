@@ -147,6 +147,7 @@ class VolumeSpikeScanner:
                 send_telegram_message(f"Error: {e}", ADMIN)
                 t.sleep(self.SCAN_INTERVAL*3)
                 obj = self.login()
+                continue
             cycle+=1
             if datetime.now(ZoneInfo("Asia/Kolkata")).minute % 30 == 0:
                 send_telegram_message(f"Scanner alive  {time_now()}\n\ncompleted cycles{cycle}", ADMIN)
